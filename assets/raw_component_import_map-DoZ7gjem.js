@@ -395,7 +395,7 @@ const n=`<script>
       }
     }
   }
-</style>`,o=`<script>
+</style>`,a=`<script>
   export let dashedlines1 = ''
   export let dashedlines2 = ''
   export let dashedlines3 = ''
@@ -508,7 +508,7 @@ const n=`<script>
     left: 50%;
     transform: translateX(-50%);
   }
-</style>`,a=`<script>
+</style>`,o=`<script>
   import { base } from '$app/paths';
 
   let now = new Date()
@@ -817,8 +817,8 @@ const n=`<script>
     </Slogan>
     <div class="heroheader_links">
       <Linkbutton isExternal
-        link="./"
-        btnlabel="Demo coming soon"
+        link="https://demo.gardenjs.org/"
+        btnlabel="Watch demo"
         bgColor="turquoise">
       </Linkbutton>
       <Linkbutton
@@ -1383,4 +1383,4 @@ const n=`<script>
 
 <Subpage>
   <Main />
-</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:b,LayoutsSubpage:u};export{y as rawComponentMap};
+</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:a,ComponentsFooterFooter:o,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:b,LayoutsSubpage:u};export{y as rawComponentMap};
