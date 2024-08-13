@@ -17,11 +17,13 @@ const n=`<script>
     <div class="accordion_item">
       <button class="accordion_btn {item.isOpen ? 'active' : ''}" on:click={() => toggleAccordion(index)}>
         <span class="accordion_label">{item.label}</span>
-        {#if item.isOpen}
-          <svg class="accordion_icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
-        {:else}
-          <svg class="accordion_icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-        {/if}
+        <span class="accordion_icon">
+          {#if item.isOpen}
+            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+          {:else}
+            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          {/if}
+        </span>
       </button>
       <div class="panel" aria-hidden={item.isOpen ? "false" : "true"} class:show={item.isOpen}>
         <div class="accordion_content">
@@ -71,19 +73,19 @@ const n=`<script>
         @media (min-width: 840px) {
           padding: 1rem 2rem;
         }
-        .accordion_icon {
+        .icon {
           transition: .4s;
-          font-size: 0.875rem;
+          font-size: 0.625rem;
           color: var(--c-text);
-          width: 1rem;
-          height: 1rem;
+          @media (min-width: 600px) {
+            font-size: 0.75rem;
+          }
           @media (min-width: 960px) {
-            width: 1.5rem;
-            height: 1.5rem;
+            font-size: 0.875rem;
           }
         }
-        &.active:hover .accordion_icon,
-        &.active .accordion_icon {
+        &.active:hover .icon,
+        &.active .icon {
           transition: .4s;
         }
         .accordion_label {
@@ -190,7 +192,7 @@ const n=`<script>
       }
     }
   }
-</style>`,t=`<script> 
+</style>`,i=`<script> 
   export let title
   export let text
 
@@ -292,7 +294,7 @@ const n=`<script>
       }
     }
   }
-</style>`,i=`<script>
+</style>`,t=`<script>
   import ChapterHead from './Chapterhead.svelte'
   import Grid from '../../layouts/Grid.svelte'
   import Card from '../card/Card.svelte'
@@ -414,48 +416,71 @@ const n=`<script>
 <\/script>
 
 {#if dashedlines1}
-  <div class="dashed">
-    <div class="dashed_label dashed-01_label">This is Gardenjs</div>
-    <div class="svg">{@html Dashedline1}</div>
+  <div class="dl-1">
+    <div class="grid-helper"></div>
+    <div class="small-displays">{@html Dashedline7}</div>
+    <div class="big-displays">{@html Dashedline1}</div>
+    <div class="dl_text dl-1_text"><div>This is Gardenjs</div></div>
   </div>
-{:else}
-  <div class="dashed">
-    {#if dashedlines2}
-      <div class="svg">{@html Dashedline2}</div>
-      <div class="dashed_label dashed-02_label">ROFL</div>
-    {/if}
-    {#if dashedlines3}
-      <div class="svg">{@html Dashedline3}</div>
-      <div class="dashed_label dashed-03_label">Become a gardener</div>
-    {/if}
-    {#if dashedlines4}
-      <div class="svg">{@html Dashedline4}</div>
-      <div class="dashed_label dashed-04_label">Overview</div>
-    {/if}
-    {#if dashedlines5}
-      <div class="svg">{@html Dashedline5}</div>
-      <div class="dashed_label dashed-05_label">If you like Gardenjs</div>  
-    {/if}
-    {#if dashedlines6}
-      <div class="svg">{@html Dashedline6}</div>
-      <div class="dashed_label dashed-06_label">Do you have any questions?</div>
-    {/if}
-    {#if dashedlines7}
-      <div class="svg">{@html Dashedline7}</div>
-      <div class="dashed_label dashed-07_label">And now get to the fruit!</div>
-    {/if}
+  {:else}
+  {#if dashedlines2}
+    <div class="dl dl-2">
+      <div></div>
+      <div>{@html Dashedline2}</div>
+      <div class="dl_text"><div>ROFL</div></div>
+    </div>
+  {/if}
+  {#if dashedlines3}
+    <div class="dl dl-3">
+      <div></div>
+      <div>{@html Dashedline3}</div>
+      <div class="dl_text"><div>Become a gardener</div></div>
+    </div>
+  {/if}
+  {#if dashedlines4}
+    <div class="dl dl-4">
+      <div></div>
+      <div>{@html Dashedline4}</div>
+      <div class="dl_text"><div>Overview</div></div>
+    </div>
+  {/if}
+  {#if dashedlines5}
+    <div class="dl dl-5">
+      <div></div>
+      <div>{@html Dashedline5}</div>
+      <div class="dl_text"><div>If you like Gardenjs</div></div>
+    </div>
+  {/if}
+  {#if dashedlines6}
+  <div class="dl dl-6">
+    <div></div>
+    <div>{@html Dashedline6}</div>
+    <div class="dl_text"><div>Do you have any questions?</div></div>
   </div>
+  {/if}
+  {#if dashedlines7}
+    <div class="dl dl-7">
+      <div></div>
+      <div>{@html Dashedline7}</div>
+      <div class="dl_text"><div>And now get to the fruit!</div></div>
+    </div>
+  {/if}
 {/if}
 
 <style lang="scss">
-  .dashed {
+  .dl {
     position: relative;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0px;
     height: 250px;
     width: 100%;
   }
-  .dashed_label {
-    font-family:"Gloria Hallelujah";
+  .dl_text {
+    position: relative;
+    overflow: hidden;
+    font-family: "Gloria Hallelujah";
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--c-text);
@@ -463,50 +488,74 @@ const n=`<script>
     @media (min-width: 840px) {
       font-size: 0.938rem;
     }
+    div {
+      position: absolute;
+    }
   }
-  .dashed-01_label {
-    position: absolute;
-    right: 2rem;
-    bottom: 1.5rem;
-  }
-  .dashed-02_label,
-  .dashed-03_label,
-  .dashed-04_label,
-  .dashed-05_label,
-  .dashed-06_label,
-  .dashed-07_label {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-  }
-  .dashed-02_label {
+  .dl-2 .dl_text div {
     top: 70%;
-    margin: 0 0 0 4rem;
   }
-  .dashed-03_label {
-    top: 72%;
-    margin: 0 0 0 8rem;
+  .dl-3 .dl_text div {
+    top: 69%;
   }
-  .dashed-04_label {
-    top: 70%;
-    margin: 0 0 0 5.5rem;
+  .dl-4 .dl_text div {
+    top: 68%;
   }
-  .dashed-05_label {
+  .dl-5 .dl_text div {
     top: 25%;
-    margin: 0 0 0 8rem;
   }
-  .dashed-06_label {
-    top: 71%;
-    margin: 0 0 0 10rem;
+  .dl-6 .dl_text div {
+    top: 69%;
   }
-  .dashed-07_label {
+  .dl-7 .dl_text div {
     top: 45%;
-    margin: 0 0 0 10rem;
   }
-  .svg {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+
+  // first dashed line
+  .dl-1 {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0px;
+    height: 250px;
+    width: 100%;
+    @media (min-width: 960px) {
+      display: block;
+    }
+  }
+  .dl-1_text {
+    @media (min-width: 840px) {
+      font-size: 0.938rem;
+    }
+    div {
+      position: absolute;
+      top: 45%;
+      @media (min-width: 960px) {
+        position: relative;
+      }
+    }
+    @media (min-width: 960px) {
+      position: absolute;
+      top: 80%;
+      right: 2.5rem;
+      div {
+        display: inline-block;
+      }
+    }
+  }
+  .grid-helper,
+  .small-displays {
+    display: block;
+    @media (min-width: 960px) {
+      display: none;
+    }
+  }
+  .big-displays {
+    display: none;
+    @media (min-width: 960px) {
+      display: block;
+    }
   }
 </style>`,a=`<script>
   import { base } from '$app/paths';
@@ -592,6 +641,7 @@ const n=`<script>
       }
       .footer_nav {
         order: 1;
+        margin: 0 auto 1.25rem;
         @media (min-width: 1280px) {
           order: 2;
           text-align: right;
@@ -601,7 +651,6 @@ const n=`<script>
           li {
             display: inline-block;
             padding: 0 0.75rem;
-            margin-bottom: 0.75rem;
             @media (min-width: 840px) {
               margin: 0;
               padding: 0 0 0 2rem;
@@ -738,6 +787,9 @@ const n=`<script>
       li {
         margin-left: 1rem;
         line-height: 1;
+        &:first-of-type {
+          margin: 0;
+        }
         a {
           padding: 0.5rem 0.75rem;
           @media (min-width: 960px) {
@@ -778,7 +830,6 @@ const n=`<script>
           }
         }
         .toggle-mode {
-            padding-left: 1rem;
             .icon {
               font-size: 0.938rem;
               @media (min-width: 840px) {
@@ -792,7 +843,7 @@ const n=`<script>
             }
           }
         &.navicon {
-          margin-left: 2rem;
+          margin: 0 0.5rem 0 2rem;
           @media (min-width: 840px) {
             display: none;
           }
@@ -849,11 +900,11 @@ const n=`<script>
       margin: 2rem 0 0;
       padding: 0 0 1rem;
       .heroheader_links {
+        margin: 0 0 2rem;
         @media (min-width: 480px) {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 0 1rem;
-          margin: 0 0 2rem;
         }
       }
     }
@@ -937,7 +988,7 @@ const n=`<script>
       margin: 0;
     }
   }
-</style>`,c=`<script>
+</style>`,p=`<script>
   import Headernav from './Headernav.svelte'
   import Heroheader from './Heroheader.svelte'
   import Logo from '../../assets/icons/logo.svg'
@@ -1070,7 +1121,7 @@ const n=`<script>
       }
     }
   }
-</style>`,p=`<script>
+</style>`,c=`<script>
   export let slogan = ''
   export let subtext = ''
 <\/script>
@@ -1364,7 +1415,7 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,b=`<script>
+</style>`,u=`<script>
   import Main from './Main.svelte';
 <\/script>
 
@@ -1377,11 +1428,11 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,u=`<script>
+</style>`,b=`<script>
   import Subpage from './Subpage.svelte';
   import Main from './Main.example.svelte';
 <\/script>
 
 <Subpage>
   <Main />
-</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:c,ComponentsHeaderSlogan:p,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:b,LayoutsSubpage:u};export{y as rawComponentMap};
+</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:i,ComponentsChapterChapter:t,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:u,LayoutsSubpage:b};export{y as rawComponentMap};
