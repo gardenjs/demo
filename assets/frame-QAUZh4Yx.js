@@ -10,18 +10,18 @@ import{a3 as A,a4 as E,a5 as B,a6 as v,a7 as r,a8 as h,a9 as $,aa as g,ab as fe,
 </div>
 
 <style>
+  .container {
+    width: 90%;
+    max-width: 1240px;
+    background: var(--c-website-bg);
+    margin: auto;
+  }
   .container_content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     padding: 2rem;
-  }
-  .container {
-    width: 90%;
-    max-width: 1240px;
-    background: #fff;
-    margin: auto;
   }
   h1,
   h2,
