@@ -1,5 +1,5 @@
 const n=`<script>
-  export let items = [];
+  let { items = $bindable([]) } = $props();
 
   function toggleAccordion(index) {
     items = items.map((item, i) => {
@@ -15,7 +15,7 @@ const n=`<script>
 <div class="accordion">
   {#each items as item, index}
     <div class="accordion_item">
-      <button class="accordion_btn {item.isOpen ? 'active' : ''}" on:click={() => toggleAccordion(index)}>
+      <button class="accordion_btn {item.isOpen ? 'active' : ''}" onclick={() => toggleAccordion(index)}>
         <span class="accordion_label">{item.label}</span>
         <span class="accordion_icon">
           {#if item.isOpen}
@@ -57,7 +57,7 @@ const n=`<script>
       }
       &:hover,
       &:focus-visible,
-      &:has(.active) {
+      &:has(:global(.active)) {
         box-shadow: 0 0 0 1px #fff, 0 0 0 #fff;
         transform: translate(0.25rem , 0.25rem );
         transform: rotateZ(0deg);
@@ -128,8 +128,7 @@ const n=`<script>
     }
   }
 </style>`,e=`<script>
-  export let quote
-  export let author
+  let { quote, author } = $props();
 <\/script>
 
 <blockquote class="blockquote">
@@ -193,15 +192,27 @@ const n=`<script>
     }
   }
 </style>`,t=`<script> 
-  export let title
-  export let text
 
-  export let rotation = ''
-  export let columns = 1
 
-  $: rotationClass = rotation ? \`rotate_\${rotation}-\${columns}col\` : ''
 
-  export let bgColor = ''
+  /**
+   * @typedef {Object} Props
+   * @property {any} title
+   * @property {any} text
+   * @property {string} [rotation]
+   * @property {number} [columns]
+   * @property {string} [bgColor]
+   */
+
+  /** @type {Props} */
+  let {
+    title,
+    text,
+    rotation = '',
+    columns = 1,
+    bgColor = ''
+  } = $props();
+  let rotationClass = $derived(rotation ? \`rotate_\${rotation}-\${columns}col\` : '')
 <\/script>
 
 <div class="card {bgColor} {rotationClass}">
@@ -299,12 +310,25 @@ const n=`<script>
   import Grid from '../../layouts/Grid.svelte'
   import Card from '../card/Card.svelte'
 
-  export let cards = []
-  export let pagetitle = ''
-  export let title = ''
-  export let chaptertext = ''
-  export let columns = 1
-  export let bgColor
+  /**
+   * @typedef {Object} Props
+   * @property {any} [cards]
+   * @property {string} [pagetitle]
+   * @property {string} [title]
+   * @property {string} [chaptertext]
+   * @property {number} [columns]
+   * @property {any} bgColor
+   */
+
+  /** @type {Props} */
+  let {
+    cards = [],
+    pagetitle = '',
+    title = '',
+    chaptertext = '',
+    columns = 1,
+    bgColor
+  } = $props();
 
 <\/script>
 
@@ -321,12 +345,23 @@ const n=`<script>
       title={card.title}
       text={card.text} />
   {/each}
-</Grid>`,o=`<script>
-  export let pagetitle = ''
-  export let title = ''
-  export let chaptertext = ''
+</Grid>`,r=`<script>
 
-  export let isPagetitle = false
+  /**
+   * @typedef {Object} Props
+   * @property {string} [pagetitle]
+   * @property {string} [title]
+   * @property {string} [chaptertext]
+   * @property {boolean} [isPagetitle]
+   */
+
+  /** @type {Props} */
+  let {
+    pagetitle = '',
+    title = '',
+    chaptertext = '',
+    isPagetitle = false
+  } = $props();
   let haspagetitle = 'has-h1'
 <\/script>
 
@@ -397,14 +432,7 @@ const n=`<script>
       }
     }
   }
-</style>`,r=`<script>
-  export let dashedlines1 = ''
-  export let dashedlines2 = ''
-  export let dashedlines3 = ''
-  export let dashedlines4 = ''
-  export let dashedlines5 = ''
-  export let dashedlines6 = ''
-  export let dashedlines7 = ''
+</style>`,o=`<script>
 
   import Dashedline1 from '../../assets/images/dashedline_1.svg?raw'
   import Dashedline2 from '../../assets/images/dashedline_2.svg?raw'
@@ -413,6 +441,27 @@ const n=`<script>
   import Dashedline5 from '../../assets/images/dashedline_5.svg?raw'
   import Dashedline6 from '../../assets/images/dashedline_6.svg?raw'
   import Dashedline7 from '../../assets/images/dashedline_7.svg?raw'
+  /**
+   * @typedef {Object} Props
+   * @property {string} [dashedlines1]
+   * @property {string} [dashedlines2]
+   * @property {string} [dashedlines3]
+   * @property {string} [dashedlines4]
+   * @property {string} [dashedlines5]
+   * @property {string} [dashedlines6]
+   * @property {string} [dashedlines7]
+   */
+
+  /** @type {Props} */
+  let {
+    dashedlines1 = '',
+    dashedlines2 = '',
+    dashedlines3 = '',
+    dashedlines4 = '',
+    dashedlines5 = '',
+    dashedlines6 = '',
+    dashedlines7 = ''
+  } = $props();
 <\/script>
 
 {#if dashedlines1}
@@ -562,8 +611,14 @@ const n=`<script>
 
   let now = new Date()
 
-  export let hasBordertop = false
-  export let isHome = false
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [hasBordertop]
+   * @property {boolean} [isHome]
+   */
+
+  /** @type {Props} */
+  let { hasBordertop = false, isHome = false } = $props();
 
   let bordertop = 'has-bt'
 
@@ -617,11 +672,14 @@ const n=`<script>
       .footer_copyright {
         order: 2;
         font-size: 0.813rem;
+        a {
+          font-variation-settings: 'wght' 500;
+        }
+        @media (min-width: 960px) {
+          font-size: 0.938rem;
+        }
         @media (min-width: 1280px) {
           order: 1;
-          .copyright {
-            font-size: 110%;
-          }
         }
       }
       @media (min-width: 960px) {
@@ -629,12 +687,8 @@ const n=`<script>
       }
       a {
         display: inline-block;
-        font-size: 0.813rem;
         color: var(--c-link);
         text-decoration: none;
-        @media (min-width: 960px) {
-          font-size: 0.938rem;
-        }
         &:hover {
           color: var(--c-link-hl);
         }
@@ -730,24 +784,32 @@ const n=`<script>
     }
   }
 </style>`,l=`<script>
+  import { run } from 'svelte/legacy';
+
   import { createEventDispatcher } from "svelte";
   import {theme, toggleTheme} from "../../stores/theme.js";
   import { browser } from '$app/environment';
   import { base } from '$app/paths';
 
   const dispatch = createEventDispatcher();
-  export let showMobilenav = false
-  export let hasMobilenavicon = false
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [showMobilenav]
+   * @property {boolean} [hasMobilenavicon]
+   */
+
+  /** @type {Props} */
+  let { showMobilenav = false, hasMobilenavicon = false } = $props();
 
   function handleToggleMobilenav() {
     dispatch("toggleMobilenav", {})
   }
 
-  $: {
+  run(() => {
     if (browser) {
       document.documentElement.setAttribute("data-theme", $theme);
     }
-  }
+  });
 <\/script>
 
 <nav class="navbar_nav">
@@ -762,7 +824,7 @@ const n=`<script>
       </a>
     </li>
     <li>
-      <button id="toggle-mode" class="toggle-mode" title="Toggle Website Theme" on:click={toggleTheme}>
+      <button id="toggle-mode" class="toggle-mode" title="Toggle Website Theme" onclick={toggleTheme}  aria-label="Toggle theme">
       {#if theme === 'light'}
         <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg>
       {:else}
@@ -772,7 +834,7 @@ const n=`<script>
     </li>
     {#if hasMobilenavicon}
       <li class="navicon">
-        <button class="menu" on:click={handleToggleMobilenav} title={showMobilenav ? 'Collapse menu' : 'Expand menu'}>
+        <button class="menu" onclick={handleToggleMobilenav} title={showMobilenav ? 'Collapse menu' : 'Expand menu'} aria-label="Toggle menu">
           <svg class="icon" role="img" width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
         </button>
       </li>
@@ -820,13 +882,13 @@ const n=`<script>
             font-size: 0.75rem;
             color: var(--c-text);
           }
-          &.github {
-            .icon {
-              display: none;
-              @media (min-width: 840px) {
-                display: block;
-                margin-right: 0.25rem;
-              }
+        }
+        a.github {
+          .icon {
+            display: none;
+            @media (min-width: 840px) {
+              display: block;
+              margin-right: 0.25rem;
             }
           }
         }
@@ -923,11 +985,22 @@ const n=`<script>
     }
   }
 </style>`,m=`<script>
-  export let isExternal = false
 
-  export let link = ''
-  export let bgColor = ''
-  export let btnlabel = ''
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [isExternal]
+   * @property {string} [link]
+   * @property {string} [bgColor]
+   * @property {string} [btnlabel]
+   */
+
+  /** @type {Props} */
+  let {
+    isExternal = false,
+    link = '',
+    bgColor = '',
+    btnlabel = ''
+  } = $props();
 <\/script>
 
 {#if isExternal}
@@ -997,10 +1070,21 @@ const n=`<script>
   import { theme } from '../../stores/theme'
   import { base } from '$app/paths';
 
-  export let isFixed = false
-  export let showHeroheader = false
-  export let showMobilenav = false
-  export let hasMobilenavicon = false
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [isFixed]
+   * @property {boolean} [showHeroheader]
+   * @property {boolean} [showMobilenav]
+   * @property {boolean} [hasMobilenavicon]
+   */
+
+  /** @type {Props} */
+  let {
+    isFixed = false,
+    showHeroheader = false,
+    showMobilenav = false,
+    hasMobilenavicon = false
+  } = $props();
 
   let fixed = 'is-fixed'
 <\/script>
@@ -1123,8 +1207,14 @@ const n=`<script>
     }
   }
 </style>`,c=`<script>
-  export let slogan = ''
-  export let subtext = ''
+  /**
+   * @typedef {Object} Props
+   * @property {string} [slogan]
+   * @property {string} [subtext]
+   */
+
+  /** @type {Props} */
+  let { slogan = '', subtext = '' } = $props();
 <\/script>
 
 <div class="slogan">{@html slogan}</div>
@@ -1220,11 +1310,17 @@ const n=`<script>
   import { createEventDispatcher } from "svelte";
   import { base } from '$app/paths';
 
-  export let url = "";
   
   const dispatch = createEventDispatcher();
 
-  export let folders = [];
+  /**
+   * @typedef {Object} Props
+   * @property {string} [url]
+   * @property {any} [folders]
+   */
+
+  /** @type {Props} */
+  let { url = "", folders = [] } = $props();
 
   function handleClick() {
     dispatch("toggleMobilenav");
@@ -1240,7 +1336,7 @@ const n=`<script>
         <ul>
           {#each folder.items as link}  
             <li>
-              <a href={base}{link.href} class:active={url === base + link.href} on:click={handleClick}>{link.label}</a>
+              <a href={base + link.href} class:active={url === base + link.href} onclick={handleClick}>{link.label}</a>
             </li>
           {/each}
         </ul>
@@ -1315,7 +1411,13 @@ const n=`<script>
 </style>`,v=`<script>
   import Vegetables from '../../assets/icons/vegetables.svg'
 
-  export let isHome = false
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [isHome]
+   */
+
+  /** @type {Props} */
+  let { isHome = false } = $props();
 
   let ifhome = 'is-home'
   let undefined = ''
@@ -1364,7 +1466,7 @@ const n=`<script>
 </style>`,f=`<script>
   import Documentation from './Documentation.svelte';
 
-  export let sidenavFolders = [];
+  let { sidenavFolders = [] } = $props();
 <\/script>
 
 <Documentation sidenavFolders={sidenavFolders}>
@@ -1379,7 +1481,13 @@ const n=`<script>
 </style>`,x=`<script>
   import Grid from './Grid.svelte';
 
-  export let columns = 2;
+  /**
+   * @typedef {Object} Props
+   * @property {number} [columns]
+   */
+
+  /** @type {Props} */
+  let { columns = 2 } = $props();
 <\/script>
 
 <Grid columns={columns}>
@@ -1416,7 +1524,7 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,u=`<script>
+</style>`,b=`<script>
   import Main from './Main.svelte';
 <\/script>
 
@@ -1429,11 +1537,11 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,b=`<script>
+</style>`,u=`<script>
   import Subpage from './Subpage.svelte';
   import Main from './Main.example.svelte';
 <\/script>
 
 <Subpage>
   <Main />
-</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:o,ComponentsDashedlinesDashed_Lines:r,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:u,LayoutsSubpage:b};export{y as rawComponentMap};
+</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:b,LayoutsSubpage:u};export{y as rawComponentMap};
