@@ -1,31 +1,63 @@
 const n=`<script>
-  let { items = $bindable([]) } = $props();
+  let { items = $bindable([]) } = $props()
 
   function toggleAccordion(index) {
     items = items.map((item, i) => {
       if (i === index) {
-        return { ...item, isOpen: !item.isOpen };
+        return { ...item, isOpen: !item.isOpen }
       } else {
-        return { ...item, isOpen: false };
+        return { ...item, isOpen: false }
       }
-    });
+    })
   }
 <\/script>
 
 <div class="accordion">
   {#each items as item, index}
     <div class="accordion_item">
-      <button class="accordion_btn {item.isOpen ? 'active' : ''}" onclick={() => toggleAccordion(index)}>
+      <button
+        class="accordion_btn {item.isOpen ? 'active' : ''}"
+        onclick={() => toggleAccordion(index)}
+      >
         <span class="accordion_label">{item.label}</span>
         <span class="accordion_icon">
           {#if item.isOpen}
-            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+            <svg
+              class="icon"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              viewBox="0 0 24 24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"><path d="M5 12h14" /></svg
+            >
           {:else}
-            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg
+              class="icon"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              viewBox="0 0 24 24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M5 12h14" /><path d="M12 5v14" /></svg
+            >
           {/if}
         </span>
       </button>
-      <div class="panel" aria-hidden={item.isOpen ? "false" : "true"} class:show={item.isOpen}>
+      <div
+        class="panel"
+        aria-hidden={item.isOpen ? 'false' : 'true'}
+        class:show={item.isOpen}
+      >
         <div class="accordion_content">
           {@html item.content}
         </div>
@@ -47,7 +79,9 @@ const n=`<script>
       margin: 0 0 1rem;
       border: var(--b);
       border-radius: var(--b-radius);
-      box-shadow: 0.25rem 0.25rem 0 -1px var(--c-text), 0.25rem 0.25rem 0 var(--c-text);
+      box-shadow:
+        0.25rem 0.25rem 0 -1px var(--c-text),
+        0.25rem 0.25rem 0 var(--c-text);
       transition: 0.4s;
       &:nth-last-of-type(even) {
         transform: rotateZ(-0.25deg);
@@ -58,8 +92,10 @@ const n=`<script>
       &:hover,
       &:focus-visible,
       &:has(:global(.active)) {
-        box-shadow: 0 0 0 1px #fff, 0 0 0 #fff;
-        transform: translate(0.25rem , 0.25rem );
+        box-shadow:
+          0 0 0 1px #fff,
+          0 0 0 #fff;
+        transform: translate(0.25rem, 0.25rem);
         transform: rotateZ(0deg);
         transition: 0.4s;
       }
@@ -74,7 +110,7 @@ const n=`<script>
           padding: 1rem 2rem;
         }
         .icon {
-          transition: .4s;
+          transition: 0.4s;
           font-size: 0.625rem;
           color: var(--c-text);
           @media (min-width: 600px) {
@@ -86,7 +122,7 @@ const n=`<script>
         }
         &.active:hover .icon,
         &.active .icon {
-          transition: .4s;
+          transition: 0.4s;
         }
         .accordion_label {
           display: block;
@@ -111,11 +147,11 @@ const n=`<script>
         max-height: 0;
         overflow: hidden;
         opacity: 0;
-        transition: .4s;
+        transition: 0.4s;
         &.show {
           opacity: 1;
           max-height: 1000px;
-          transition: .4s;
+          transition: 0.4s;
         }
         .accordion_content {
           margin: 0.25rem 0 0 0.25rem;
@@ -127,12 +163,28 @@ const n=`<script>
       }
     }
   }
-</style>`,e=`<script>
-  let { quote, author } = $props();
+</style>
+`,e=`<script>
+  let { quote, author } = $props()
 <\/script>
 
 <blockquote class="blockquote">
-  <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+  <svg
+    class="icon"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><path
+      d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+    /></svg
+  >
   <p class="quote">{quote}</p>
   <span class="author">{author}</span>
 </blockquote>
@@ -143,7 +195,9 @@ const n=`<script>
     padding: 1.5rem;
     border: var(--b);
     border-radius: var(--b-radius);
-    box-shadow: 0.75rem 0.75rem 0 -2px var(--c-website-bg), 0.75rem 0.75rem 0 var(--c-text);
+    box-shadow:
+      0.75rem 0.75rem 0 -2px var(--c-website-bg),
+      0.75rem 0.75rem 0 var(--c-text);
     transform: rotateZ(-0.5deg);
     @media (min-width: 840px) {
       padding: 2rem;
@@ -161,7 +215,7 @@ const n=`<script>
     }
     .quote {
       max-width: 100%;
-      font-family:"Gloria Hallelujah";
+      font-family: 'Gloria Hallelujah';
       font-size: 1.125rem;
       color: var(--c-text);
       font-weight: 600;
@@ -191,10 +245,8 @@ const n=`<script>
       }
     }
   }
-</style>`,t=`<script> 
-
-
-
+</style>
+`,i=`<script>
   /**
    * @typedef {Object} Props
    * @property {any} title
@@ -205,14 +257,10 @@ const n=`<script>
    */
 
   /** @type {Props} */
-  let {
-    title,
-    text,
-    rotation = '',
-    columns = 1,
-    bgColor = ''
-  } = $props();
-  let rotationClass = $derived(rotation ? \`rotate_\${rotation}-\${columns}col\` : '')
+  let { title, text, rotation = '', columns = 1, bgColor = '' } = $props()
+  let rotationClass = $derived(
+    rotation ? \`rotate_\${rotation}-\${columns}col\` : ''
+  )
 <\/script>
 
 <div class="card {bgColor} {rotationClass}">
@@ -226,7 +274,9 @@ const n=`<script>
     padding: 1.5rem;
     border: var(--b);
     border-radius: var(--b-radius);
-    box-shadow: 0.75rem 0.75rem 0 -2px var(--c-website-bg), 0.75rem 0.75rem 0 var(--c-text);
+    box-shadow:
+      0.75rem 0.75rem 0 -2px var(--c-website-bg),
+      0.75rem 0.75rem 0 var(--c-text);
     @media (min-width: 840px) {
       padding: 2rem;
     }
@@ -284,14 +334,14 @@ const n=`<script>
     @media (min-width: 600px) and (max-width: 959px) {
       &.rotate_left-3col,
       &.rotate_right-3col {
-          transform: rotateZ(1deg);
+        transform: rotateZ(1deg);
       }
-      &.rotate_left-3col ,
+      &.rotate_left-3col,
       &.rotate_right-3col {
-        &:nth-of-type(4n+1) {
+        &:nth-of-type(4n + 1) {
           transform: rotateZ(-1deg);
         }
-        &:nth-of-type(4n+0) {
+        &:nth-of-type(4n + 0) {
           transform: rotateZ(-1deg);
         }
       }
@@ -305,48 +355,8 @@ const n=`<script>
       }
     }
   }
-</style>`,i=`<script>
-  import ChapterHead from './Chapterhead.svelte'
-  import Grid from '../../layouts/Grid.svelte'
-  import Card from '../card/Card.svelte'
-
-  /**
-   * @typedef {Object} Props
-   * @property {any} [cards]
-   * @property {string} [pagetitle]
-   * @property {string} [title]
-   * @property {string} [chaptertext]
-   * @property {number} [columns]
-   * @property {any} bgColor
-   */
-
-  /** @type {Props} */
-  let {
-    cards = [],
-    pagetitle = '',
-    title = '',
-    chaptertext = '',
-    columns = 1,
-    bgColor
-  } = $props();
-
-<\/script>
-
-<ChapterHead
-  title={title}
-  pagetitle={pagetitle}
-  chaptertext={chaptertext} />
-<Grid columns={columns}>
-  {#each cards as card, i}
-    <Card
-      bgColor={bgColor}
-      rotation={card.rotation}
-      columns={columns}
-      title={card.title}
-      text={card.text} />
-  {/each}
-</Grid>`,r=`<script>
-
+</style>
+`,t=`<script>
   /**
    * @typedef {Object} Props
    * @property {string} [pagetitle]
@@ -360,12 +370,12 @@ const n=`<script>
     pagetitle = '',
     title = '',
     chaptertext = '',
-    isPagetitle = false
-  } = $props();
+    isPagetitle = false,
+  } = $props()
   let haspagetitle = 'has-h1'
 <\/script>
 
-<div class="chapter {isPagetitle? haspagetitle : ''}">
+<div class="chapter-intro {isPagetitle ? haspagetitle : ''}">
   {#if pagetitle}
     <h1><span>{pagetitle}</span></h1>
   {:else}
@@ -377,7 +387,7 @@ const n=`<script>
 </div>
 
 <style lang="scss">
-  .chapter {
+  .chapter-intro {
     text-align: center;
     margin: 2rem 0 1rem;
     &.has-h1 {
@@ -411,7 +421,11 @@ const n=`<script>
     }
     h1 {
       span {
-        background: linear-gradient(180deg, transparent 0 55%, var(--c-headline-bg) 55% 100%);
+        background: linear-gradient(
+          180deg,
+          transparent 0 55%,
+          var(--c-headline-bg) 55% 100%
+        );
       }
     }
     p {
@@ -432,8 +446,8 @@ const n=`<script>
       }
     }
   }
-</style>`,o=`<script>
-
+</style>
+`,o=`<script>
   import Dashedline1 from '../../assets/images/dashedline_1.svg?raw'
   import Dashedline2 from '../../assets/images/dashedline_2.svg?raw'
   import Dashedline3 from '../../assets/images/dashedline_3.svg?raw'
@@ -441,8 +455,10 @@ const n=`<script>
   import Dashedline5 from '../../assets/images/dashedline_5.svg?raw'
   import Dashedline6 from '../../assets/images/dashedline_6.svg?raw'
   import Dashedline7 from '../../assets/images/dashedline_7.svg?raw'
+
   /**
    * @typedef {Object} Props
+   * @property {string} [variant] – '1'..'7', wählt eine Linie (z. B. für Panel-Select)
    * @property {string} [dashedlines1]
    * @property {string} [dashedlines2]
    * @property {string} [dashedlines3]
@@ -454,60 +470,69 @@ const n=`<script>
 
   /** @type {Props} */
   let {
+    variant = '',
     dashedlines1 = '',
     dashedlines2 = '',
     dashedlines3 = '',
     dashedlines4 = '',
     dashedlines5 = '',
     dashedlines6 = '',
-    dashedlines7 = ''
-  } = $props();
+    dashedlines7 = '',
+  } = $props()
+
+  const show1 = $derived(variant === '1' || dashedlines1)
+  const show2 = $derived(variant === '2' || dashedlines2)
+  const show3 = $derived(variant === '3' || dashedlines3)
+  const show4 = $derived(variant === '4' || dashedlines4)
+  const show5 = $derived(variant === '5' || dashedlines5)
+  const show6 = $derived(variant === '6' || dashedlines6)
+  const show7 = $derived(variant === '7' || dashedlines7)
 <\/script>
 
-{#if dashedlines1}
+{#if show1}
   <div class="dl-1">
     <div class="grid-helper"></div>
     <div class="small-displays">{@html Dashedline7}</div>
     <div class="big-displays">{@html Dashedline1}</div>
     <div class="dl_text dl-1_text"><div>This is Gardenjs</div></div>
   </div>
-  {:else}
-  {#if dashedlines2}
+{:else}
+  {#if show2}
     <div class="dl dl-2">
       <div></div>
       <div>{@html Dashedline2}</div>
       <div class="dl_text"><div>ROFL</div></div>
     </div>
   {/if}
-  {#if dashedlines3}
+  {#if show3}
     <div class="dl dl-3">
       <div></div>
       <div>{@html Dashedline3}</div>
       <div class="dl_text"><div>Become a gardener</div></div>
     </div>
   {/if}
-  {#if dashedlines4}
+  {#if show4}
     <div class="dl dl-4">
       <div></div>
       <div>{@html Dashedline4}</div>
       <div class="dl_text"><div>Overview</div></div>
     </div>
   {/if}
-  {#if dashedlines5}
+  {#if show5}
     <div class="dl dl-5">
       <div></div>
       <div>{@html Dashedline5}</div>
       <div class="dl_text"><div>If you like Gardenjs</div></div>
     </div>
   {/if}
-  {#if dashedlines6}
-  <div class="dl dl-6">
-    <div></div>
-    <div>{@html Dashedline6}</div>
-    <div class="dl_text"><div>Do you have any questions?</div></div>
-  </div>
+  {#if show6}
+    <div class="dl dl-6">
+      <div></div>
+      <div>{@html Dashedline6}</div>
+      <div class="dl_text"><div>Do you have any questions?</div></div>
+    </div>
   {/if}
-  {#if dashedlines7}
+  {#if show7}
     <div class="dl dl-7">
       <div></div>
       <div>{@html Dashedline7}</div>
@@ -529,7 +554,7 @@ const n=`<script>
   .dl_text {
     position: relative;
     overflow: hidden;
-    font-family: "Gloria Hallelujah";
+    font-family: 'Gloria Hallelujah';
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--c-text);
@@ -606,29 +631,51 @@ const n=`<script>
       display: block;
     }
   }
-</style>`,a=`<script>
-  import { base } from '$app/paths';
+</style>
+`,r=`<script>
+  import { base } from '$app/paths'
 
   let now = new Date()
 
   /**
    * @typedef {Object} Props
+   * @property {string} [variant]
    * @property {boolean} [hasBordertop]
    * @property {boolean} [isHome]
    */
 
   /** @type {Props} */
-  let { hasBordertop = false, isHome = false } = $props();
+  let { variant = '', hasBordertop = false, isHome = false } = $props()
 
   let bordertop = 'has-bt'
 
   let ifhome = 'is-home'
+
+  const effectiveIsHome = $derived(
+    variant === 'home' ? true : variant ? false : isHome && !hasBordertop
+  )
+  const effectiveHasBordertop = $derived(
+    variant === 'docs' ? true : variant ? false : hasBordertop && !isHome
+  )
 <\/script>
 
-<footer class="footer {hasBordertop? bordertop : ''} {isHome? ifhome : ''}">
+<footer
+  class="footer {effectiveHasBordertop ? bordertop : ''} {effectiveIsHome
+    ? ifhome
+    : ''}"
+>
   <div class="footer_container">
     <div class="footer_copyright">
-        <div>Gardenjs is released under the <a href="https://github.com/gardenjs/gardenjs?tab=MIT-1-ov-file" target="_blank" title="MIT License">MIT License</a>.<br><span class="copyright">&copy;</span> {now.getFullYear()} <a href="https://www.rabbitdevelopment.com">Rabbit Development</a>. All rights reserved.</div>
+      <div>
+        Gardenjs is released under the <a
+          href="https://github.com/gardenjs/gardenjs?tab=MIT-1-ov-file"
+          target="_blank"
+          title="MIT License">MIT License</a
+        >.<br /><span class="copyright">&copy;</span>
+        {now.getFullYear()}
+        <a href="https://www.rabbitdevelopment.com">Rabbit Development</a>. All
+        rights reserved.
+      </div>
     </div>
     <div class="footer_nav">
       <nav>
@@ -717,7 +764,7 @@ const n=`<script>
     &.is-home {
       .footer_copyright,
       .footer_nav li {
-        font-family:"Gloria Hallelujah";
+        font-family: 'Gloria Hallelujah';
       }
       a {
         color: var(--c-footer-link);
@@ -727,10 +774,11 @@ const n=`<script>
       }
     }
   }
-</style>`,s=`<script>
+</style>
+`,a=`<script>
   import ScreenshotDarkmode from '../../assets/images/screenshot_garden-dark.png'
   import ScreenshotLightmode from '../../assets/images/screenshot_garden.png'
-  import {theme} from '../../stores/theme'
+  import { theme } from '../../stores/theme'
 <\/script>
 
 <div class="app">
@@ -738,8 +786,12 @@ const n=`<script>
     <div class="menu-circle"></div>
   </div>
   <picture>
-    <source srcset="{ScreenshotDarkmode}" media="{$theme === 'light' ? 'all' : 'none'}" data-media="(prefers-color-scheme:light)">
-    <img src="{ScreenshotLightmode}" alt="Screenshot Garden app">
+    <source
+      srcset={ScreenshotDarkmode}
+      media={$theme === 'light' ? 'all' : 'none'}
+      data-media="(prefers-color-scheme:light)"
+    />
+    <img src={ScreenshotLightmode} alt="Screenshot Garden app" />
   </picture>
 </div>
 
@@ -767,7 +819,9 @@ const n=`<script>
         height: 0.688rem;
         background-color: #f96057;
         border-radius: 50%;
-        box-shadow: 18px 0 0 0 #f8ce52, 36px 0 0 0 #5fcf65;
+        box-shadow:
+          18px 0 0 0 #f8ce52,
+          36px 0 0 0 #5fcf65;
         flex-shrink: 0;
         @media screen and (max-width: 945px) {
           display: none;
@@ -783,33 +837,35 @@ const n=`<script>
       }
     }
   }
-</style>`,l=`<script>
-  import { run } from 'svelte/legacy';
+</style>
+`,s=`<script>
+  import { theme, toggleTheme } from '../../stores/theme.js'
+  import { browser } from '$app/environment'
+  import { base } from '$app/paths'
 
-  import { createEventDispatcher } from "svelte";
-  import {theme, toggleTheme} from "../../stores/theme.js";
-  import { browser } from '$app/environment';
-  import { base } from '$app/paths';
-
-  const dispatch = createEventDispatcher();
   /**
    * @typedef {Object} Props
    * @property {boolean} [showMobilenav]
    * @property {boolean} [hasMobilenavicon]
+   * @property {() => void} [ontoggleMobilenav]
    */
 
   /** @type {Props} */
-  let { showMobilenav = false, hasMobilenavicon = false } = $props();
+  let {
+    showMobilenav = false,
+    hasMobilenavicon = false,
+    ontoggleMobilenav = () => {},
+  } = $props()
 
   function handleToggleMobilenav() {
-    dispatch("toggleMobilenav", {})
+    ontoggleMobilenav()
   }
 
-  run(() => {
+  $effect(() => {
     if (browser) {
-      document.documentElement.setAttribute("data-theme", $theme);
+      document.documentElement.setAttribute('data-theme', $theme)
     }
-  });
+  })
 <\/script>
 
 <nav class="navbar_nav">
@@ -818,24 +874,94 @@ const n=`<script>
       <a href="{base}/docs" title="documentation">Docs</a>
     </li>
     <li>
-      <a class="github" href="https://github.com/rabbitdevelopment/garden" title="Garden Github Repository" target="_blank">
-        <svg class="icon" role="img" width="32" viewBox="0 0 32 32" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M15.015 0C6.723 0 0 6.894 0 15.398c0 6.803 4.302 12.573 10.27 14.61.75.14 1.025-.334 1.025-.743 0-.365-.013-1.334-.02-2.618-4.178.93-5.059-2.065-5.059-2.065-.683-1.778-1.668-2.252-1.668-2.252-1.362-.955.104-.936.104-.936 1.507.11 2.3 1.587 2.3 1.587 1.34 2.353 3.515 1.673 4.37 1.28.137-.996.525-1.674.954-2.058-3.334-.389-6.84-1.71-6.84-7.61 0-1.681.585-3.056 1.545-4.132-.155-.39-.67-1.955.147-4.075 0 0 1.26-.414 4.13 1.579a14.03 14.03 0 013.76-.518c1.275.005 2.56.176 3.759.518 2.867-1.993 4.126-1.579 4.126-1.579.82 2.12.304 3.685.15 4.075.961 1.076 1.543 2.45 1.543 4.13 0 5.917-3.512 7.218-6.857 7.599.54.476 1.02 1.415 1.02 2.852 0 2.057-.02 3.718-.02 4.223 0 .413.27.891 1.034.741 5.963-2.04 10.261-7.808 10.261-14.608C30.034 6.894 23.31 0 15.015 0"/></svg>
+      <a
+        class="github"
+        href="https://github.com/rabbitdevelopment/garden"
+        title="Garden Github Repository"
+        target="_blank"
+      >
+        <svg
+          class="icon"
+          role="img"
+          width="32"
+          viewBox="0 0 32 32"
+          height="32"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          clip-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="2"
+          ><path
+            d="M15.015 0C6.723 0 0 6.894 0 15.398c0 6.803 4.302 12.573 10.27 14.61.75.14 1.025-.334 1.025-.743 0-.365-.013-1.334-.02-2.618-4.178.93-5.059-2.065-5.059-2.065-.683-1.778-1.668-2.252-1.668-2.252-1.362-.955.104-.936.104-.936 1.507.11 2.3 1.587 2.3 1.587 1.34 2.353 3.515 1.673 4.37 1.28.137-.996.525-1.674.954-2.058-3.334-.389-6.84-1.71-6.84-7.61 0-1.681.585-3.056 1.545-4.132-.155-.39-.67-1.955.147-4.075 0 0 1.26-.414 4.13 1.579a14.03 14.03 0 013.76-.518c1.275.005 2.56.176 3.759.518 2.867-1.993 4.126-1.579 4.126-1.579.82 2.12.304 3.685.15 4.075.961 1.076 1.543 2.45 1.543 4.13 0 5.917-3.512 7.218-6.857 7.599.54.476 1.02 1.415 1.02 2.852 0 2.057-.02 3.718-.02 4.223 0 .413.27.891 1.034.741 5.963-2.04 10.261-7.808 10.261-14.608C30.034 6.894 23.31 0 15.015 0"
+          /></svg
+        >
         <span>Source</span>
       </a>
     </li>
     <li>
-      <button id="toggle-mode" class="toggle-mode" title="Toggle Website Theme" onclick={toggleTheme}  aria-label="Toggle theme">
-      {#if theme === 'light'}
-        <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg>
-      {:else}
-        <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      {/if}
+      <button
+        id="toggle-mode"
+        class="toggle-mode"
+        title="Toggle Website Theme"
+        onclick={toggleTheme}
+        aria-label="Toggle theme"
+      >
+        {#if $theme === 'light'}
+          <svg
+            class="icon"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            viewBox="0 0 24 24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z" /></svg
+          >
+        {:else}
+          <svg
+            class="icon"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            viewBox="0 0 24 24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><circle cx="12" cy="12" r="4" /><path
+              d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+            /></svg
+          >
+        {/if}
       </button>
     </li>
     {#if hasMobilenavicon}
       <li class="navicon">
-        <button class="menu" onclick={handleToggleMobilenav} title={showMobilenav ? 'Collapse menu' : 'Expand menu'} aria-label="Toggle menu">
-          <svg class="icon" role="img" width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+        <button
+          class="menu"
+          onclick={handleToggleMobilenav}
+          title={showMobilenav ? 'Collapse menu' : 'Expand menu'}
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="icon"
+            role="img"
+            width="24"
+            viewBox="0 0 24 24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16" /></svg
+          >
         </button>
       </li>
     {/if}
@@ -893,18 +1019,18 @@ const n=`<script>
           }
         }
         .toggle-mode {
-            .icon {
-              font-size: 0.938rem;
-              @media (min-width: 840px) {
-                font-size: 1rem;
-              }
-            }
-            &:hover {
-              .icon {
-                color: var(--c-primary-link);
-              }
+          .icon {
+            font-size: 0.938rem;
+            @media (min-width: 840px) {
+              font-size: 1rem;
             }
           }
+          &:hover {
+            .icon {
+              color: var(--c-primary-link);
+            }
+          }
+        }
         &.navicon {
           margin: 0 0.5rem 0 2rem;
           @media (min-width: 840px) {
@@ -914,32 +1040,30 @@ const n=`<script>
       }
     }
   }
-</style>`,d=`<script>
+</style>
+`,l=`<script>
   import Slogan from './Slogan.svelte'
   import Linkbutton from './Linkbutton.svelte'
   import Applicationimage from './Applicationimage.svelte'
   import Dashedline from '../dashedlines/Dashedlines.svelte'
-  import { base } from '$app/paths';
-
+  import { base } from '$app/paths'
 <\/script>
 
 <div class="heroheader">
   <div class="heroheader_infos">
     <Slogan
       slogan="Plant, Cultivate,<br><i>Harvest!</i>"
-      subtext="Gardenjs provides a centralized platform for developers to create, test and present UI components and pages in isolation." >
-    </Slogan>
+      subtext="Gardenjs provides a centralized platform for developers to create, test and present UI components and pages in isolation."
+    ></Slogan>
     <div class="heroheader_links">
-      <Linkbutton isExternal
+      <Linkbutton
+        isExternal
         link="https://demo.gardenjs.org/"
         btnlabel="Watch demo"
-        bgColor="turquoise">
-      </Linkbutton>
-      <Linkbutton
-        link="{base}/docs"
-        btnlabel="Documentation"
-        bgColor="">
-      </Linkbutton>
+        bgColor="turquoise"
+      ></Linkbutton>
+      <Linkbutton link="{base}/docs" btnlabel="Documentation" bgColor=""
+      ></Linkbutton>
     </div>
     <Dashedline dashedlines1 />
   </div>
@@ -951,10 +1075,10 @@ const n=`<script>
 <style lang="scss">
   .heroheader {
     position: relative;
-    margin: auto;    
+    margin: auto;
     @media (min-width: 960px) {
       display: grid;
-      grid-template-columns: repeat(2,540px 1fr);
+      grid-template-columns: repeat(2, 540px 1fr);
     }
     @media (min-width: 1280px) {
       width: var(--w-website-wide);
@@ -984,8 +1108,8 @@ const n=`<script>
       }
     }
   }
-</style>`,m=`<script>
-
+</style>
+`,d=`<script>
   /**
    * @typedef {Object} Props
    * @property {boolean} [isExternal]
@@ -995,23 +1119,41 @@ const n=`<script>
    */
 
   /** @type {Props} */
-  let {
-    isExternal = false,
-    link = '',
-    bgColor = '',
-    btnlabel = ''
-  } = $props();
+  let { isExternal = false, link = '', bgColor = '', btnlabel = '' } = $props()
 <\/script>
 
 {#if isExternal}
-  <a href="{link}" class="buttonlink {bgColor}" title="Watch Gardenjs" target="_blank">
+  <a
+    href={link}
+    class="buttonlink {bgColor}"
+    title="Watch Gardenjs"
+    target="_blank"
+  >
     <span class="buttonlink-label">{btnlabel}</span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17L17 7"/></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"><path d="M7 7h10v10M7 17L17 7" /></svg
+    >
   </a>
 {:else}
-  <a href="{link}" class="buttonlink {bgColor}" title="Watch Gardenjs">
+  <a href={link} class="buttonlink {bgColor}" title="Watch Gardenjs">
     <span class="buttonlink-label">{btnlabel}</span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7" /></svg
+    >
   </a>
 {/if}
 
@@ -1027,7 +1169,9 @@ const n=`<script>
     text-decoration: none;
     border: 2px solid var(--c-text);
     border-radius: 0.25rem;
-    box-shadow: 0.25rem 0.25rem 0 -1px var(--c-text), 0.25rem 0.25rem 0 var(--c-text);
+    box-shadow:
+      0.25rem 0.25rem 0 -1px var(--c-text),
+      0.25rem 0.25rem 0 var(--c-text);
     transition: 0.4s;
     @media (min-width: 840px) {
       font-size: 0.938rem;
@@ -1044,10 +1188,12 @@ const n=`<script>
     &:hover,
     &:focus-visible {
       transition: 0.4s;
-      box-shadow: 0 0 0 -1px #fff, 0 0 0 #fff;
-      transform: translate(0.25rem , 0.25rem );
+      box-shadow:
+        0 0 0 -1px #fff,
+        0 0 0 #fff;
+      transform: translate(0.25rem, 0.25rem);
       svg {
-        transform: translateX(0.5rem );
+        transform: translateX(0.5rem);
         transition: 0.4s;
       }
     }
@@ -1057,18 +1203,21 @@ const n=`<script>
     color: var(--c-btntxt-docs);
     background-color: var(--c-primary);
     border-color: var(--c-border-docs);
-    box-shadow: 0.25rem 0.25rem 0 -1px var(--c-primary), 0.25rem 0.25rem 0 var(--c-primary);
+    box-shadow:
+      0.25rem 0.25rem 0 -1px var(--c-primary),
+      0.25rem 0.25rem 0 var(--c-primary);
     @media (min-width: 480px) {
       margin: 0;
     }
   }
-</style>`,p=`<script>
+</style>
+`,m=`<script>
   import Headernav from './Headernav.svelte'
   import Heroheader from './Heroheader.svelte'
   import Logo from '../../assets/icons/logo.svg'
   import LogoNeg from '../../assets/icons/logo_neg.svg'
   import { theme } from '../../stores/theme'
-  import { base } from '$app/paths';
+  import { base } from '$app/paths'
 
   /**
    * @typedef {Object} Props
@@ -1076,6 +1225,7 @@ const n=`<script>
    * @property {boolean} [showHeroheader]
    * @property {boolean} [showMobilenav]
    * @property {boolean} [hasMobilenavicon]
+   * @property {() => void} [ontoggleMobilenav]
    */
 
   /** @type {Props} */
@@ -1083,23 +1233,26 @@ const n=`<script>
     isFixed = false,
     showHeroheader = false,
     showMobilenav = false,
-    hasMobilenavicon = false
-  } = $props();
-
-  let fixed = 'is-fixed'
+    hasMobilenavicon = false,
+    ontoggleMobilenav = () => {},
+  } = $props()
 <\/script>
 
-<header class="header {isFixed? fixed : ''}">
+<header class="header {isFixed ? 'is-fixed' : ''}">
   <div class="header_container">
     <div class="navbar">
       <div class="navbar_container">
         <a class="logo" href="{base}/" title="go to start">
           <picture>
-            <source srcset="{Logo}" media="{$theme === 'light' ? 'all' : 'none'}" data-media="(prefers-color-scheme:light)">
-            <img src="{LogoNeg}" alt="Logo">
+            <source
+              srcset={Logo}
+              media={$theme === 'light' ? 'all' : 'none'}
+              data-media="(prefers-color-scheme:light)"
+            />
+            <img src={LogoNeg} alt="Logo" />
           </picture>
         </a>
-        <Headernav on:toggleMobilenav {showMobilenav} {hasMobilenavicon} />
+        <Headernav {ontoggleMobilenav} {showMobilenav} {hasMobilenavicon} />
       </div>
     </div>
     {#if showHeroheader}
@@ -1206,7 +1359,8 @@ const n=`<script>
       }
     }
   }
-</style>`,c=`<script>
+</style>
+`,p=`<script>
   /**
    * @typedef {Object} Props
    * @property {string} [slogan]
@@ -1214,12 +1368,11 @@ const n=`<script>
    */
 
   /** @type {Props} */
-  let { slogan = '', subtext = '' } = $props();
+  let { slogan = '', subtext = '' } = $props()
 <\/script>
 
 <div class="slogan">{@html slogan}</div>
 <p class="slogan_subtext">{subtext}</p>
-
 
 <style lang="scss">
   .slogan {
@@ -1248,7 +1401,7 @@ const n=`<script>
   .slogan_subtext {
     display: block;
     margin: 0 0 1.75rem;
-    font-family: "Gloria Hallelujah";
+    font-family: 'Gloria Hallelujah';
     font-size: 1rem;
     color: var(--c-text-light);
     text-align: center;
@@ -1262,13 +1415,113 @@ const n=`<script>
       font-size: 1.25rem;
     }
   }
-</style>`,h=`<div class="logo_gallery">
+</style>
+`,c=`<div class="logo_gallery">
   <ul class="logos">
-    <li><svg class="icon" role="img" viewBox="0 0 107 128" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><title>Svelte</title><g fill-rule="nonzero"><path d="M99.965 16.936C88.08-.075 64.605-5.118 47.632 5.696L17.823 24.695A34.21 34.21 0 002.373 47.6a36.024 36.024 0 003.551 23.121A34.317 34.317 0 00.809 83.503a36.46 36.46 0 006.226 27.561c11.888 17.014 35.362 22.054 52.333 11.24l29.809-18.999A34.207 34.207 0 00104.626 80.4a36.035 36.035 0 00-3.549-23.122 34.288 34.288 0 005.114-12.78 36.444 36.444 0 00-6.226-27.56" fill="#ff3e00"/><path d="M44.72 112.665c-9.587 2.492-19.769-1.282-25.414-9.42A21.926 21.926 0 0115.56 86.67a20.83 20.83 0 01.713-2.783l.56-1.712 1.528 1.121a38.438 38.438 0 0011.66 5.827l1.109.336-.103 1.106a6.691 6.691 0 001.202 4.432 7.144 7.144 0 007.653 2.84 6.6 6.6 0 001.83-.805l29.81-18.996a6.21 6.21 0 002.801-4.15 6.624 6.624 0 00-1.129-4.996 7.149 7.149 0 00-7.655-2.842 6.585 6.585 0 00-1.828.805l-11.375 7.251a21.755 21.755 0 01-6.053 2.658c-9.586 2.493-19.768-1.282-25.414-9.42a21.923 21.923 0 01-3.745-16.574 20.569 20.569 0 019.292-13.774l29.807-18.997a21.776 21.776 0 016.057-2.662c9.586-2.492 19.768 1.282 25.413 9.42A21.926 21.926 0 0191.44 41.33a21.006 21.006 0 01-.714 2.783l-.56 1.712-1.526-1.12a38.411 38.411 0 00-11.662-5.828l-1.109-.336.103-1.107a6.704 6.704 0 00-1.202-4.432 7.146 7.146 0 00-7.653-2.84 6.6 6.6 0 00-1.83.805l-29.81 18.998a6.2 6.2 0 00-2.799 4.148 6.616 6.616 0 001.127 4.997 7.15 7.15 0 007.655 2.841 6.6 6.6 0 001.83-.805l11.375-7.248a21.679 21.679 0 016.051-2.66c9.586-2.493 19.77 1.281 25.414 9.42a21.92 21.92 0 013.745 16.574 20.578 20.578 0 01-9.291 13.775l-29.807 18.997a21.776 21.776 0 01-6.058 2.661" fill="#fff"/></g></svg></li>
-    <li><svg class="icon" role="img" viewBox="0 0 148 128" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><title>Vue</title><path d="M91.09 0L74 29.557 56.91 0H0l74 128L148 0H91.09z" fill="#42b883" fill-rule="nonzero"/><path d="M91.09 0L74 29.557 56.91 0H29.597L74 76.798 118.403 0H91.09z" fill="#35495e" fill-rule="nonzero"/></svg></li>
-    <li><svg class="icon" role="img" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><title>React</title><circle r="2.05" fill="#61dafb" transform="translate(64.053 64) scale(5.50477)"/><g transform="matrix(5.5 0 0 5.50477 64 64)" fill="none" stroke="#61dafb"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg></li>
-    <li><svg class="icon" role="img" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title>HTML</title><path fill="#E34F26" d="M71 460L30 0h451l-41 460-185 52"/><path fill="#EF652A" d="M256 472l149-41 35-394H256"/><path fill="#EBEBEB" d="M256 208h-75l-5-58h80V94H114l1 15 14 156h127zm0 147h-1l-63-17-4-45h-56l7 89 116 32h1z"/><path fill="#FFF" d="M255 208v57h70l-7 73-63 17v59l116-32 1-10 13-149 2-15h-16zm0-114v56h137l1-12 3-29 1-15z"/></svg></li>
-    <li><svg class="icon placeholder" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Write your own Gardenjs renderer plugin to support more JS framework.</title><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    <li>
+      <svg
+        class="icon"
+        role="img"
+        viewBox="0 0 107 128"
+        xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        ><title>Svelte</title><g fill-rule="nonzero"
+          ><path
+            d="M99.965 16.936C88.08-.075 64.605-5.118 47.632 5.696L17.823 24.695A34.21 34.21 0 002.373 47.6a36.024 36.024 0 003.551 23.121A34.317 34.317 0 00.809 83.503a36.46 36.46 0 006.226 27.561c11.888 17.014 35.362 22.054 52.333 11.24l29.809-18.999A34.207 34.207 0 00104.626 80.4a36.035 36.035 0 00-3.549-23.122 34.288 34.288 0 005.114-12.78 36.444 36.444 0 00-6.226-27.56"
+            fill="#ff3e00"
+          /><path
+            d="M44.72 112.665c-9.587 2.492-19.769-1.282-25.414-9.42A21.926 21.926 0 0115.56 86.67a20.83 20.83 0 01.713-2.783l.56-1.712 1.528 1.121a38.438 38.438 0 0011.66 5.827l1.109.336-.103 1.106a6.691 6.691 0 001.202 4.432 7.144 7.144 0 007.653 2.84 6.6 6.6 0 001.83-.805l29.81-18.996a6.21 6.21 0 002.801-4.15 6.624 6.624 0 00-1.129-4.996 7.149 7.149 0 00-7.655-2.842 6.585 6.585 0 00-1.828.805l-11.375 7.251a21.755 21.755 0 01-6.053 2.658c-9.586 2.493-19.768-1.282-25.414-9.42a21.923 21.923 0 01-3.745-16.574 20.569 20.569 0 019.292-13.774l29.807-18.997a21.776 21.776 0 016.057-2.662c9.586-2.492 19.768 1.282 25.413 9.42A21.926 21.926 0 0191.44 41.33a21.006 21.006 0 01-.714 2.783l-.56 1.712-1.526-1.12a38.411 38.411 0 00-11.662-5.828l-1.109-.336.103-1.107a6.704 6.704 0 00-1.202-4.432 7.146 7.146 0 00-7.653-2.84 6.6 6.6 0 00-1.83.805l-29.81 18.998a6.2 6.2 0 00-2.799 4.148 6.616 6.616 0 001.127 4.997 7.15 7.15 0 007.655 2.841 6.6 6.6 0 001.83-.805l11.375-7.248a21.679 21.679 0 016.051-2.66c9.586-2.493 19.77 1.281 25.414 9.42a21.92 21.92 0 013.745 16.574 20.578 20.578 0 01-9.291 13.775l-29.807 18.997a21.776 21.776 0 01-6.058 2.661"
+            fill="#fff"
+          /></g
+        ></svg
+      >
+    </li>
+    <li>
+      <svg
+        class="icon"
+        role="img"
+        viewBox="0 0 148 128"
+        xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        ><title>Vue</title><path
+          d="M91.09 0L74 29.557 56.91 0H0l74 128L148 0H91.09z"
+          fill="#42b883"
+          fill-rule="nonzero"
+        /><path
+          d="M91.09 0L74 29.557 56.91 0H29.597L74 76.798 118.403 0H91.09z"
+          fill="#35495e"
+          fill-rule="nonzero"
+        /></svg
+      >
+    </li>
+    <li>
+      <svg
+        class="icon"
+        role="img"
+        viewBox="0 0 128 128"
+        xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        ><title>React</title><circle
+          r="2.05"
+          fill="#61dafb"
+          transform="translate(64.053 64) scale(5.50477)"
+        /><g
+          transform="matrix(5.5 0 0 5.50477 64 64)"
+          fill="none"
+          stroke="#61dafb"
+          ><ellipse rx="11" ry="4.2" /><ellipse
+            rx="11"
+            ry="4.2"
+            transform="rotate(60)"
+          /><ellipse rx="11" ry="4.2" transform="rotate(120)" /></g
+        ></svg
+      >
+    </li>
+    <li>
+      <svg
+        class="icon"
+        role="img"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+        ><title>HTML</title><path
+          fill="#E34F26"
+          d="M71 460L30 0h451l-41 460-185 52"
+        /><path fill="#EF652A" d="M256 472l149-41 35-394H256" /><path
+          fill="#EBEBEB"
+          d="M256 208h-75l-5-58h80V94H114l1 15 14 156h127zm0 147h-1l-63-17-4-45h-56l7 89 116 32h1z"
+        /><path
+          fill="#FFF"
+          d="M255 208v57h70l-7 73-63 17v59l116-32 1-10 13-149 2-15h-16zm0-114v56h137l1-12 3-29 1-15z"
+        /></svg
+      >
+    </li>
+    <li>
+      <svg
+        class="icon placeholder"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><title
+          >Write your own Gardenjs renderer plugin to support more JS framework.</title
+        ><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle
+          cx="5"
+          cy="12"
+          r="1"
+        /></svg
+      >
+    </li>
   </ul>
 </div>
 
@@ -1306,24 +1559,22 @@ const n=`<script>
       }
     }
   }
-</style>`,g=`<script>
-  import { createEventDispatcher } from "svelte";
-  import { base } from '$app/paths';
-
-  
-  const dispatch = createEventDispatcher();
+</style>
+`,h=`<script>
+  import { base } from '$app/paths'
 
   /**
    * @typedef {Object} Props
    * @property {string} [url]
    * @property {any} [folders]
+   * @property {() => void} [ontoggleMobilenav]
    */
 
   /** @type {Props} */
-  let { url = "", folders = [] } = $props();
+  let { url = '', folders = [], ontoggleMobilenav = () => {} } = $props()
 
   function handleClick() {
-    dispatch("toggleMobilenav");
+    ontoggleMobilenav()
   }
 <\/script>
 
@@ -1334,9 +1585,13 @@ const n=`<script>
       <li>
         <span class="sidenav_folder">{folder.title}</span>
         <ul>
-          {#each folder.items as link}  
+          {#each folder.items as link}
             <li>
-              <a href={base + link.href} class:active={url === base + link.href} onclick={handleClick}>{link.label}</a>
+              <a
+                href={base + link.href}
+                class:active={url === base + link.href}
+                onclick={handleClick}>{link.label}</a
+              >
             </li>
           {/each}
         </ul>
@@ -1408,7 +1663,8 @@ const n=`<script>
       }
     }
   }
-</style>`,v=`<script>
+</style>
+`,g=`<script>
   import Vegetables from '../../assets/icons/vegetables.svg'
 
   /**
@@ -1417,15 +1673,14 @@ const n=`<script>
    */
 
   /** @type {Props} */
-  let { isHome = false } = $props();
+  let { isHome = false } = $props()
 
   let ifhome = 'is-home'
   let undefined = ''
-
 <\/script>
 
-<div class="vegetables {isHome? ifhome : undefined}">
-  <img src="{Vegetables}" alt="Vegetable illustration">
+<div class="vegetables {isHome ? ifhome : undefined}">
+  <img src={Vegetables} alt="Vegetable illustration" />
 </div>
 
 <style lang="scss">
@@ -1463,13 +1718,14 @@ const n=`<script>
       }
     }
   }
-</style>`,f=`<script>
-  import Documentation from './Documentation.svelte';
+</style>
+`,v=`<script>
+  import Documentation from './Documentation.svelte'
 
-  let { sidenavFolders = [] } = $props();
+  let { sidenavFolders = [] } = $props()
 <\/script>
 
-<Documentation sidenavFolders={sidenavFolders}>
+<Documentation {sidenavFolders}>
   <div>Slot...</div>
 </Documentation>
 
@@ -1478,8 +1734,9 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,x=`<script>
-  import Grid from './Grid.svelte';
+</style>
+`,f=`<script>
+  import Grid from './Grid.svelte'
 
   /**
    * @typedef {Object} Props
@@ -1487,10 +1744,10 @@ const n=`<script>
    */
 
   /** @type {Props} */
-  let { columns = 2 } = $props();
+  let { columns = 2 } = $props()
 <\/script>
 
-<Grid columns={columns}>
+<Grid {columns}>
   <div>Slot 1</div>
   <div>Slot 2</div>
   <div>Slot 3</div>
@@ -1508,9 +1765,10 @@ const n=`<script>
     height: 100px;
     background-color: #eee;
   }
-</style>`,w=`<script>
-  import Homepage from './Homepage.svelte';
-  import Main from './Main.svelte';
+</style>
+`,w=`<script>
+  import Homepage from './Homepage.svelte'
+  import Main from './Main.svelte'
 <\/script>
 
 <Homepage>
@@ -1524,8 +1782,9 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,b=`<script>
-  import Main from './Main.svelte';
+</style>
+`,x=`<script>
+  import Main from './Main.svelte'
 <\/script>
 
 <Main>
@@ -1537,11 +1796,13 @@ const n=`<script>
     padding: 1rem;
     background-color: #eee;
   }
-</style>`,u=`<script>
-  import Subpage from './Subpage.svelte';
-  import Main from './Main.example.svelte';
+</style>
+`,b=`<script>
+  import Subpage from './Subpage.svelte'
+  import Main from './Main.example.svelte'
 <\/script>
 
 <Subpage>
   <Main />
-</Subpage>`,y={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:t,ComponentsChapterChapter:i,ComponentsChapterChapter_Head:r,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:a,ComponentsHeaderApplication_Image:s,ComponentsHeaderHeadernav:l,ComponentsHeaderHero_Header:d,ComponentsHeaderLinkbutton:m,ComponentsHeaderNavbar:p,ComponentsHeaderSlogan:c,ComponentsLogogalleryLogogallery:h,ComponentsSidenavSidenav:g,ComponentsVegetablesVegetables:v,LayoutsDocumentation:f,LayoutsGrid:x,LayoutsHomepage:w,LayoutsMain:b,LayoutsSubpage:u};export{y as rawComponentMap};
+</Subpage>
+`,u={ComponentsAccordionAccordion:n,ComponentsBlockquoteBlockquote:e,ComponentsCardCard:i,ComponentsChapterintroChapter_Intro:t,ComponentsDashedlinesDashed_Lines:o,ComponentsFooterFooter:r,ComponentsHeaderApplication_Image:a,ComponentsHeaderHeadernav:s,ComponentsHeaderHero_Header:l,ComponentsHeaderLinkbutton:d,ComponentsHeaderNavbar:m,ComponentsHeaderSlogan:p,ComponentsLogogalleryLogogallery:c,ComponentsSidenavSidenav:h,ComponentsVegetablesVegetables:g,LayoutsDocumentation:v,LayoutsGrid:f,LayoutsHomepage:w,LayoutsMain:x,LayoutsSubpage:b};export{u as rawComponentMap};
