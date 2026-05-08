@@ -1,0 +1,10 @@
+Build Info:
+
+- Demo bauen. npm run build:garden
+- Verzeichnis assets/ leeren
+- .garden/dist/assets nach /assets 
+- .garden/dist/frame.html nach /frame.html
+- .garden/dist/index.html nach /index.html
+- .garden/dist/index.html nach /404.html
+
+backupAssets nach /assets kopieren
